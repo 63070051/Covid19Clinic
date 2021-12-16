@@ -163,7 +163,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         PNumLbl.setFont(new java.awt.Font("Leelawadee", 1, 20)); // NOI18N
         PNumLbl.setText("Num");
-        jPanel3.add(PNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
+        jPanel3.add(PNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
 
         TNumLbl.setFont(new java.awt.Font("Leelawadee", 1, 20)); // NOI18N
         TNumLbl.setText("Num");
@@ -171,7 +171,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         PrescriptionNumLbl.setFont(new java.awt.Font("Leelawadee", 1, 20)); // NOI18N
         PrescriptionNumLbl.setText("Num");
-        jPanel3.add(PrescriptionNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, -1, -1));
+        jPanel3.add(PrescriptionNumLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 440, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaproject/img/tm.png"))); // NOI18N
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));

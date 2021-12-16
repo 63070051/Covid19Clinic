@@ -93,7 +93,7 @@ public class Login extends javax.swing.JFrame {
         if (UnameTb.getText().isEmpty() || PasswordTb.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Enter UserName add Password");
         } else if (UnameTb.getText().equals("Admin") && PasswordTb.getText().equals("password")) {
-            new Patients().setVisible(true);
+            new Dashboard().setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Wrong UserName and Password");

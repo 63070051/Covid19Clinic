@@ -29,6 +29,7 @@ public class Appointments extends javax.swing.JFrame {
         GetTreatment();
         TreatCount();
         DisplayAppointment();
+        
     }
 
     /**
@@ -53,7 +54,6 @@ public class Appointments extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         PatName = new javax.swing.JComboBox<>();
-        AppTime = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         AppointmentTable = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
@@ -66,6 +66,7 @@ public class Appointments extends javax.swing.JFrame {
         EditBtn = new javax.swing.JButton();
         DeleteBtn = new javax.swing.JButton();
         ClearBtn = new javax.swing.JButton();
+        ATime = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -160,7 +161,6 @@ public class Appointments extends javax.swing.JFrame {
 
         PatName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jPanel2.add(PatName, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 120, 152, -1));
-        jPanel2.add(AppTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(459, 118, 144, -1));
 
         AppointmentTable.setForeground(new java.awt.Color(0, 0, 255));
         AppointmentTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -185,7 +185,7 @@ public class Appointments extends javax.swing.JFrame {
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 284, 846, 259));
 
         jLabel15.setFont(new java.awt.Font("Leelawadee", 1, 20)); // NOI18N
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaproject/img/Treatment Lists.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaproject/img/Appointment Lists.png"))); // NOI18N
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
 
         jLabel16.setFont(new java.awt.Font("Leelawadee", 1, 20)); // NOI18N
@@ -266,6 +266,9 @@ public class Appointments extends javax.swing.JFrame {
             }
         });
         jPanel2.add(ClearBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 191, 147, -1));
+
+        ATime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 10:00", "10:00 - 12:00", "13:00 - 15:00", "15:00 - 17:00", "17:00 - 19:00" }));
+        jPanel2.add(ATime, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 120, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -379,7 +382,8 @@ public class Appointments extends javax.swing.JFrame {
                 add.setInt(1, AppId);
                 add.setString(2, ApDate.getDate().toString());
                 add.setString(3, PatName.getSelectedItem().toString());
-                add.setString(4, String.valueOf(AppTime.getDate().getTime()));
+//                add.setString(4, String.valueOf(AppTime.getDate().getTime()));
+                add.setString(4, ATime.getSelectedItem().toString());
                 add.setString(5, TreatName.getSelectedItem().toString());
                 int row = add.executeUpdate();
                 JOptionPane.showMessageDialog(this, "Appointment Added Successfully");
@@ -397,7 +401,9 @@ public class Appointments extends javax.swing.JFrame {
         int MyIndex = AppointmentTable.getSelectedRow();
         Key = Integer.valueOf(model.getValueAt(MyIndex, 0).toString());
         PatName.setSelectedItem(model.getValueAt(MyIndex, 2).toString());
+        ATime.setSelectedItem(model.getValueAt(MyIndex, 3).toString());
         TreatName.setSelectedItem(model.getValueAt(MyIndex, 4).toString());
+
     }//GEN-LAST:event_AppointmentTableMouseClicked
 
     private void DeleteBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteBtnMouseClicked
@@ -424,7 +430,7 @@ public class Appointments extends javax.swing.JFrame {
         } else {
             try {
                 Con = DriverManager.getConnection("jdbc:mysql://151.106.124.151:3306/u693904119_jeremy_oop", "u693904119_jeremy_oop", "@Jeremy2021");
-                String Query = "Update u693904119_jeremy_oop.AppointmentTbl set APPDATE='" + ApDate.getDate().toString()+ "'" + ",PATIENT='" + PatName.getSelectedItem().toString() + "'" + ",APPTIME='" + AppTime.getDate().toString() + "'" + ",TREATMENT='" + TreatName.getSelectedItem().toString() + "'" + "where APPID=" + Key;
+                String Query = "Update u693904119_jeremy_oop.AppointmentTbl set APPDATE='" + ApDate.getDate().toString()+ "'" + ",PATIENT='" + PatName.getSelectedItem().toString() + "'" + ",APPTIME='" + ATime.getSelectedItem().toString() + "'" + ",TREATMENT='" + TreatName.getSelectedItem().toString() + "'" + "where APPID=" + Key;
                 Statement Add = Con.createStatement();
                 Add.executeUpdate(Query);
                 JOptionPane.showMessageDialog(this, "Appointment Updated Successfully");
@@ -526,8 +532,8 @@ public class Appointments extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ATime;
     private com.toedter.calendar.JDateChooser ApDate;
-    private com.toedter.calendar.JDateChooser AppTime;
     private javax.swing.JTable AppointmentTable;
     private javax.swing.JButton ClearBtn;
     private javax.swing.JButton DeleteBtn;
